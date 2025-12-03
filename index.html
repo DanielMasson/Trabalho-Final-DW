@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo.css">
+    <title>Tela Inicial</title>
+</head>
+<body>
+    <div class="inputs">
+        <label>Prioridade</label>
+        <select id="prioridade">
+            <option value="baixa">Baixa</option>
+            <option value="normal">Normal</option>
+            <option value="urgente">Urgente</option>
+        </select>
+        <label>Descrição</label>
+        <input type="text" maxlength="100" id="descricao" placeholder="Trabalho DW...">
+        <label>Recursos Necessarios</label>
+        <input type="text" id="recursos" placeholder="Computador, Internet, etc">
+        <label>Data Final</label>
+        <input type="datetime-local" id="data">
+        <label>Matricula</label>
+        <input type="number" max="10" id="matricula" placeholder="0000000000">
+        <button onclick="addtarefa()">Adicionar Tarefa</button>
+    </div>
+    <script src="javascript.js"></script>
+</body>
+</html>
