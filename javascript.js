@@ -29,3 +29,7 @@ async function addtarefa() {
         body: JSON.stringify(dados)
     })
 }
+
+function redirecionar(url) {
+    window.location.href = url;
+}
