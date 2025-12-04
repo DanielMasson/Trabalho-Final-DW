@@ -34,9 +34,16 @@ async function carregarTarefas() {
                         </tr>
                     </thead>
                     <tbody>
-                        ${tarefas.map((tarefa, index) => `
+                        ${tarefas.map((tarefa, index) => {
+                            const ehUrgente = (tarefa.prioridade || '').toLowerCase() === 'urgente';
+                            
+                            const estiloPrioridade = ehUrgente ? 'color: #ff0000; font-weight: bold;' : '';
+
+                            return `
                             <tr class="${index % 2 === 0 ? 'par' : 'impar'}">
-                                <td class="prioridade">${tarefa.prioridade}</td>
+                                <td class="prioridade" style="${estiloPrioridade}">
+                                    ${tarefa.prioridade}
+                                </td>
                                 <td class="descricao">${tarefa.descricao}</td>
                                 <td class="recursos">
                                     ${Array.isArray(tarefa.recursosNecessarios) || Array.isArray(tarefa.recursos) 
@@ -46,12 +53,13 @@ async function carregarTarefas() {
                                 <td class="data">${tarefa.dataLimite || tarefa.data}</td>
                                 <td class="matricula">${tarefa.matricula}</td>
                             </tr>
-                        `).join('')}
+                        `}).join('')}
                     </tbody>
                 </table>
             `;
         }
     } catch (error) {
+        console.error(error);
         container.innerHTML = `
             <div class="error-message">
                 <h2>❌ Erro ao carregar tarefas</h2>
@@ -63,8 +71,5 @@ async function carregarTarefas() {
     }
 }
 
-// Carrega tarefas ao abrir a página
 document.addEventListener('DOMContentLoaded', carregarTarefas);
 
-// Atualiza a cada 30 segundos
-setInterval(carregarTarefas, 30000);
